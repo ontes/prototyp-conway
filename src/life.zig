@@ -8,7 +8,6 @@ const survive_low = 4;
 const survive_high = 4;
 const born_low = 4;
 const born_high = 4;
-const initial_density = 80;
 const steps_per_init = 30;
 
 pub var thread: std.Thread = undefined;
@@ -157,7 +156,10 @@ fn initRandom(seed: u64) void {
         while (y < n) : (y += 1) {
             var z: i32 = 0;
             while (z < n) : (z += 1) {
-                if (random.int(u8) % initial_density == 0)
+                const x_factor = @intCast(u32, std.math.absInt(50 - x) catch unreachable);
+                const y_factor = @intCast(u32, std.math.absInt(50 - y) catch unreachable);
+                const z_factor = @intCast(u32, std.math.absInt(50 - z) catch unreachable);
+                if (random.int(u32) % (20 + x_factor + y_factor + z_factor) == 0)
                     addCell(.{ x, y, z, 1 });
             }
         }

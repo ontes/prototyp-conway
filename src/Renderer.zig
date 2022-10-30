@@ -226,11 +226,12 @@ const fs_source =
     \\  @group(0) @binding(1) var<uniform> uniform: Uniform;
     \\  @fragment
     \\  fn main(@location(0) rel_pos: vec4<f32>, @location(1) abs_pos: vec4<f32>) -> @location(0) vec4<f32> {
+    \\      let color = (abs_pos.xyz + 100) / 200;
     \\      let normal: vec4<f32> = normalize(trunc(rel_pos));
     \\      let light: vec4<f32> = normalize(uniform.light_dir);
     \\      let diffuse_coef = max(dot(light, normal), 0);
-    \\      let dist_coef: f32 = 1 - clamp((length(abs_pos - uniform.cam_pos) - 50) / 400, 0, 1);
-    \\      return vec4<f32>(vec3<f32>((0.5 + 0.75 * diffuse_coef) * dist_coef), 1);
+    \\      let dist_coef: f32 = 1 - clamp((length(abs_pos - uniform.cam_pos) - 50) / 500, 0, 1);
+    \\      return vec4<f32>(color * (0.6 + 1.2 * diffuse_coef) * dist_coef, 1);
     \\  }
 ;
 

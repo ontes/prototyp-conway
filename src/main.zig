@@ -60,8 +60,8 @@ fn onUpdate() !void {
     const position_coef = @intToFloat(f32, timer.time % 100000) / 100000 * std.math.pi * 2;
     const x = @cos(position_coef) * 150;
     const z = @sin(position_coef) * 150;
-    const cam_pos = [3]f32{ x, 75, z };
-    const light_dir = [3]f32{ x, 150, z };
+    const cam_pos = [3]f32{ x, 25, z };
+    const light_dir = [3]f32{ x, 100, z };
 
     cam.position = cam_pos;
     cam.direction = cam_pos;
